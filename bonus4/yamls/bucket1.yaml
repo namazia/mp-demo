@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Simple cloud formation for bucket creation and configuration
+
+
+Resources:  
+  AccessLogBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: LogDeliveryWrite
+            
+  MainBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: "bucket-mp-demo"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+
+Outputs:
+  MainBucketName:
+    Description: Name of the main bucket
+    Value: "bucket-mp-demo"
